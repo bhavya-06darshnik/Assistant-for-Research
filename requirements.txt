@@ -5,3 +5,5 @@ torch==2.5.1
 fastapi==0.115.2
 uvicorn==0.30.6
 huggingface_hub
+hf_xet
+sentencepiece==0.2.0
