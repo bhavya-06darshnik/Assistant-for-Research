@@ -49,22 +49,22 @@ This project is a Streamlit-based web application designed to summarize research
 4. Test with sample files in `tests/sample.pdf` or `sample.txt`.
 
 ## File Structure
-D:\EZ-Project
-├── app
-│   └── nlp
-│       ├── document_processor.py  # Text extraction
-│       ├── summarizer.py         # Summary generation
-│       ├── qa_handler.py         # Question answering
-│       ├── question_generator.py # Challenge questions
-├── models
-│   ├── t5-small
-│   ├── distilbart-cnn-12-6
-│   ├── distilbert-base-uncased-distilled-squad
-├── tests
-│   ├── sample.pdf              # Test PDF
-│   ├── sample.txt              # Test TXT
-├── main.py                    # Streamlit UI
-├── README.md                  # This file
+- `app/`
+    - `nlp/`
+        - `document_processor.py` – Text extraction
+        - `summarizer.py` – Summary generation
+        - `qa_handler.py` – Question answering
+        - `question_generator.py` – Challenge questions
+- `models/`
+    - `t5-small/`
+    - `distilbart-cnn-12-6/`
+    - `distilbert-base-uncased-distilled-squad/`
+- `tests/`
+    - `sample.pdf` – Test PDF
+    - `sample.txt` – Test TXT
+- `main.py` – Streamlit UI
+- `README.md` – This file
+
 
 
 ## Code Details
