@@ -48,7 +48,7 @@ This project is a Streamlit-based web application designed to summarize research
 4. Test with sample files in `tests/sample.pdf` or `sample.txt`.
 
 ## File Structure
-`**D:\EZ-Project
+D:\EZ-Project
 ├── app
 │   └── nlp
 │       ├── document_processor.py  # Text extraction
@@ -63,4 +63,4 @@ This project is a Streamlit-based web application designed to summarize research
 │   ├── sample.pdf              # Test PDF
 │   ├── sample.txt              # Test TXT
 ├── main.py                    # Streamlit UI
-├── README.md                  # This file**`
+├── README.md                  # This file
