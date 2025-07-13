@@ -2,10 +2,6 @@ streamlit==1.36.0
 pdfplumber==0.11.4
 transformers==4.51.3
 torch==2.5.1
-fastapi==0.115.2
-uvicorn==0.30.6
 huggingface_hub
 hf_xet
 sentencepiece==0.2.0
-uvicorn==0.32.0
-pydantic==2.9.2
