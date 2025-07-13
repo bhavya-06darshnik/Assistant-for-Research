@@ -1,30 +1,19 @@
 import pdfplumber
+import io
 
-def extract_text(file) -> str:
-    """
-    Extract text from a PDF or TXT file.
-
-    Args:
-        file: Uploaded file object (from Streamlit or FastAPI).
-
-    Returns:
-        str: Extracted text from the document.
-
-    Raises:
-        ValueError: If the file type is unsupported or text extraction fails.
-    """
+def extract_text(file: io.BytesIO) -> str:
     try:
-        if file.name.endswith(".pdf"):
+        file_name = file.name.lower()
+        if file_name.endswith(".pdf"):
             with pdfplumber.open(file) as pdf:
                 text = "".join(page.extract_text() or "" for page in pdf.pages)
-        elif file.name.endswith(".txt"):
+        elif file_name.endswith(".txt"):
             text = file.read().decode("utf-8")
         else:
-            raise ValueError("Unsupported file type. Use PDF or TXT.")
-
+            raise ValueError(f"Unsupported file type: {file_name}")
         if not text.strip():
-            raise ValueError("No text extracted from the document.")
-
+            raise ValueError("No text extracted from file.")
+        print(f"Extracted text: {len(text.split())} words, first 100 chars: {text[:100]}...")
         return text
     except Exception as e:
         raise ValueError(f"Error extracting text: {str(e)}")
