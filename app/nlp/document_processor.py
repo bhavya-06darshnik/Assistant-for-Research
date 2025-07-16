@@ -4,7 +4,7 @@ import re
 
 def extract_text(file_obj):
     try:
-        # Determine file type
+
         if isinstance(file_obj, io.BytesIO):
             content = file_obj.read()
             ext = file_obj.name.lower() if hasattr(file_obj, 'name') else ''
@@ -26,11 +26,11 @@ def extract_text(file_obj):
             else:
                 raise ValueError("Unsupported file type")
 
-        # Clean text
-        text = re.sub(r'[ \t]+', ' ', text)  # remove repeated spaces/tabs
-        text = re.sub(r'\n{2,}', '\n\n', text)  # preserve paragraph structure
-        text = re.sub(r'(?<=[.,!?])(?=[^\s])', r' ', text)  # ensure space after punctuation
-        text = re.sub(r'[^\w\s.,!?()\-:;%]', '', text)  # allow basic punctuation
+
+        text = re.sub(r'[ \t]+', ' ', text)
+        text = re.sub(r'\n{2,}', '\n\n', text)
+        text = re.sub(r'(?<=[.,!?])(?=[^\s])', r' ', text)
+        text = re.sub(r'[^\w\s.,!?()\-:;%]', '', text)
 
         text = fix_spacing(text)
 
@@ -44,16 +44,16 @@ def extract_text(file_obj):
 
 
 def fix_spacing(text):
-    # Add space between lowercase + uppercase (e.g., "sampleEfficient" -> "sample Efficient")
+
     text = re.sub(r'([a-z])([A-Z])', r'\1 \2', text)
 
-    # Add space between letter + digit (e.g., "v2model" -> "v2 model")
+
     text = re.sub(r'([a-zA-Z])([0-9])', r'\1 \2', text)
 
-    # Add space between digit + letter
+
     text = re.sub(r'([0-9])([a-zA-Z])', r'\1 \2', text)
 
-    # Add space after punctuation if missing
+
     text = re.sub(r'(?<=[.,!?])(?=[^\s])', r' ', text)
 
     return text

@@ -3,27 +3,27 @@ from transformers import pipeline, AutoTokenizer
 
 def summarize_text(text: str) -> str:
     try:
-        # Check for empty input
+
         if not text.strip():
             raise ValueError("Input text is empty.")
 
-        # Light clean-up: collapse spaces, fix spacing after punctuation
+
         text = re.sub(r'\s+', ' ', text).strip()
         text = re.sub(r'(?<=[.,!?])(?=[^\s])', r' ', text)
 
-        # Basic length check
+
         word_count = len(text.split())
         if word_count < 50:
             raise ValueError(f"Input text too short ({word_count} words). Minimum 50 words required.")
 
         print(f"[INFO] Input: {word_count} words")
 
-        # Load tokenizer and summarizer from local path
+
         model_path = "D:/EZ-Project/models/distilbart-cnn-12-6"
         tokenizer = AutoTokenizer.from_pretrained(model_path)
         summarizer = pipeline("summarization", model=model_path, tokenizer=tokenizer, framework="pt")
 
-        # Generate summary (handle long input automatically)
+
         summary_output = summarizer(
             text,
             max_length=500,  # tokens (approx 350–400 words)
@@ -39,7 +39,7 @@ def summarize_text(text: str) -> str:
         print(f"[INFO] Summary: {summary_word_count} words")
 
         if summary_word_count < 50:
-            # Add minimal buffer if it's too short
+
             summary_text += " The document further elaborates on the methodology and analysis presented."
 
         return summary_text
